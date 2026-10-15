@@ -1,6 +1,8 @@
 import { Activity, AlertTriangle, BarChart3, ClipboardCheck, Clock, Gauge, Stethoscope } from 'lucide-react';
 import { dateParamToIso, toBrazilianDate } from '../src/lib/dates';
 import { getDashboard, type Dashboard } from '../src/lib/api';
+import { getBootstrap, type Bootstrap } from '../src/lib/api';
+import { RoundApp } from './round-app';
 
 const fallbackDashboard: Dashboard = {
   totalPacientesAtivos: 0,
@@ -144,6 +146,7 @@ function DeviceChart({ type, indicator }: { type: string; indicator: Indicator }
       <MiniSeries trend={indicator.tendencia || []} />
     </article>
   );
+  return <RoundApp data={data} apiError={apiError} />;
 }
 
 function Sparkline({ trend, unit }: { trend: Array<Record<string, any>>; unit: string }) {
